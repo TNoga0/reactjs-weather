@@ -1,13 +1,15 @@
 import React, {useState} from "react";
 import "../App.css";
 
-function Searchbar() {
+function Searchbar(props) {
 
   const [query, setQuery] = useState("");
 
   const searchLocalisation = evt => {
     if (evt.key === "Enter") {
-      console.log(query);
+      fetch(`${props.api.base}weather?q=Krakow&appid=${props.api.key}`)
+        .then(response => response.json())
+        .then(data => console.log(data));
     }
   };
 

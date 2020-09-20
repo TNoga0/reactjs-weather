@@ -11,7 +11,7 @@ function App() {
   return (
     <div className="App cold">
       <main>
-        <Searchbar/>
+        <Searchbar api={api}/>
         <header className="App-header">
         </header>
       </main>
