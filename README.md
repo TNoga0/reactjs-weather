@@ -1,3 +1,5 @@
+This app was made to practise ReactJS, it's not an original design - inspiration comes from the user TylerPottsDev
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
