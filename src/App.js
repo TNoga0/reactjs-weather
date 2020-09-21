@@ -8,10 +8,17 @@ const api = {
 };
 
 function App() {
+
+  function receiveTemperature(temperature) {
+    if (temperature !== -273) {
+      console.log(temperature);
+    }
+  }
+
   return (
     <div className="App cold">
       <main>
-        <Searchbar api={api}/>
+        <Searchbar api={api} passDataToParent={receiveTemperature}/>
         <header className="App-header">
         </header>
       </main>
