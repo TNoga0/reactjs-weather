@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import Searchbar from "./components/Searchbar";
+import Result from "./components/Result";
 
 const api = {
   key: "def6901da7e55d9c50a0b2bcfcfe0550",
@@ -9,18 +10,15 @@ const api = {
 
 function App() {
 
-  function receiveTemperature(temperature) {
-    if (temperature !== -273) {
-      console.log(temperature);
-    }
-  }
+  const [weatherData, setWeatherData] = useState({});
 
   return (
     <div className="App cold">
       <main>
-        <Searchbar api={api} passDataToParent={receiveTemperature}/>
-        <header className="App-header">
-        </header>
+        <Searchbar api={api} passDataToParent={setWeatherData}/>
+        {weatherData.location !== "" &&
+        <Result data={weatherData}/>
+        }
       </main>
     </div>
   );

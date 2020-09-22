@@ -4,19 +4,24 @@ import "../App.css";
 function Searchbar(props) {
 
   const [query, setQuery] = useState("");
-  const [locationTemperature, setTemperature] = useState(-273);
+  const [locationData, setData] = useState(-273);
 
-  useEffect(() => {passData()}, [locationTemperature]);
+  useEffect(() => {passData()}, [locationData]);
 
   function passData(){
-    props.passDataToParent(locationTemperature);
+    props.passDataToParent(locationData);
   }
 
   const searchLocalisation = evt => {
     if (evt.key === "Enter") {
       fetch(`${props.api.base}weather?q=${query}&appid=${props.api.key}`)
         .then(response => response.json())
-        .then(data => {setTemperature((data.main.temp - 273.15).toFixed(0))})
+        .then(data => {setData({
+          temperature: (data.main.temp - 273.15).toFixed(0) + "\u00B0C",
+          location: data.name + ", " +  data.sys.country,
+          overall: data.weather[0].main,
+        })
+      })
     }
   };
 
