@@ -10,9 +10,11 @@ function Result(props) {
       <div className="Location">
         {props.data.location}
       </div>
-      <div className="Temperature">
-        {props.data.temperature}
-      </div>
+      {Object.keys(props.data).length !== 0 &&
+        <div className="Temperature">
+          {props.data.temperature}
+        </div>
+      }
       <div className="Overall">
         {props.data.overall}
       </div>
