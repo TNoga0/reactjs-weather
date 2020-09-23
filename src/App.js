@@ -1,24 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import Searchbar from "./components/Searchbar";
+import Result from "./components/Result";
+
+const api = {
+  key: "def6901da7e55d9c50a0b2bcfcfe0550",
+  base: "https://api.openweathermap.org/data/2.5/"
+};
 
 function App() {
+
+  const [weatherData, setWeatherData] = useState({});
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={(typeof weatherData.temperature != "undefined") ? ((weatherData.temperature > 16) ? "App warm" : "App") : "App"}>
+      <main>
+        <Searchbar api={api} passDataToParent={setWeatherData}/>
+        {weatherData.location !== "" &&
+        <Result data={weatherData}/>
+        }
+      </main>
     </div>
   );
 }
