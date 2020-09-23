@@ -6,11 +6,11 @@ function Searchbar(props) {
   const [query, setQuery] = useState("");
   const [locationData, setData] = useState(-273);
 
-  useEffect(() => {passData()}, [locationData]);
-
   function passData(){
     props.passDataToParent(locationData);
   }
+
+  useEffect(() => {passData()}, [locationData]);
 
   const searchLocalisation = evt => {
     if (evt.key === "Enter") {

@@ -8,9 +8,13 @@ function Result(props) {
   return(
     <div className="Result">
       <div className="Location">
-        <h2>
-          {props.data.temperature}
-        </h2>
+        {props.data.location}
+      </div>
+      <div className="Temperature">
+        {props.data.temperature}
+      </div>
+      <div className="Overall">
+        {props.data.overall}
       </div>
     </div>
   );
