@@ -17,7 +17,7 @@ function Searchbar(props) {
       fetch(`${props.api.base}weather?q=${query}&appid=${props.api.key}`)
         .then(response => response.json())
         .then(data => {setData({
-          temperature: (data.main.temp - 273.15).toFixed(0) + "\u00B0C",
+          temperature: (data.main.temp - 273.15).toFixed(0),
           location: data.name + ", " +  data.sys.country,
           overall: data.weather[0].main,
         })

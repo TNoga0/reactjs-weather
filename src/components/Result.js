@@ -12,7 +12,7 @@ function Result(props) {
       </div>
       {Object.keys(props.data).length !== 0 &&
         <div className="Temperature">
-          {props.data.temperature}
+          {props.data.temperature + "\u00B0C"}
         </div>
       }
       <div className="Overall">

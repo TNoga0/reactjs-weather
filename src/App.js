@@ -13,7 +13,7 @@ function App() {
   const [weatherData, setWeatherData] = useState({});
 
   return (
-    <div className="App cold">
+    <div className={(typeof weatherData.temperature != "undefined") ? ((weatherData.temperature > 16) ? "App warm" : "App") : "App"}>
       <main>
         <Searchbar api={api} passDataToParent={setWeatherData}/>
         {weatherData.location !== "" &&
