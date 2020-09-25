@@ -1,22 +1,23 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import "../App.css";
+import {weatherContext} from "../App";
 
-function Result(props) {
+function Result() {
 
-  useEffect(() => {console.log(props.data)}, [props.data]);
+  const { weatherData } = useContext(weatherContext);
 
   return(
     <div className="Result">
       <div className="Location">
-        {props.data.location}
+        {weatherData.location}
       </div>
-      {Object.keys(props.data).length !== 0 &&
+      {Object.keys(weatherData).length !== 0 &&
         <div className="Temperature">
-          {props.data.temperature + "\u00B0C"}
+          {weatherData.temperature + "\u00B0C"}
         </div>
       }
       <div className="Overall">
-        {props.data.overall}
+        {weatherData.overall}
       </div>
     </div>
   );

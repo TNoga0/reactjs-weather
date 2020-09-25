@@ -1,16 +1,14 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
 import "../App.css";
+import {weatherContext} from "../App";
 
 function Searchbar(props) {
 
   const [query, setQuery] = useState("");
   const [locationData, setData] = useState(-273);
 
-  function passData(){
-    props.passDataToParent(locationData);
-  }
-
-  useEffect(() => {passData()}, [locationData]);
+  const { setWeatherData } = useContext(weatherContext);
+  useEffect(() => {setWeatherData(locationData)}, [locationData]);
 
   const searchLocalisation = evt => {
     if (evt.key === "Enter") {
