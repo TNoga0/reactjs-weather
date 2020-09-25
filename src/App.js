@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {createContext, useState} from 'react';
 import './App.css';
 import Searchbar from "./components/Searchbar";
 import Result from "./components/Result";
@@ -8,19 +8,25 @@ const api = {
   base: "https://api.openweathermap.org/data/2.5/"
 };
 
+export const weatherContext = createContext({});
+
 function App() {
 
   const [weatherData, setWeatherData] = useState({});
 
+  const { Provider } = weatherContext;
+
   return (
-    <div className={(typeof weatherData.temperature != "undefined") ? ((weatherData.temperature > 16) ? "App warm" : "App") : "App"}>
-      <main>
-        <Searchbar api={api} passDataToParent={setWeatherData}/>
-        {weatherData.location !== "" &&
-        <Result data={weatherData}/>
-        }
-      </main>
-    </div>
+    <Provider value={{ weatherData, setWeatherData }}>
+      <div className={(typeof weatherData.temperature != "undefined") ? ((weatherData.temperature > 16) ? "App warm" : "App") : "App"}>
+        <main>
+          <Searchbar api={api} />
+          {weatherData.location !== "" &&
+          <Result />
+          }
+        </main>
+      </div>
+    </Provider>
   );
 }
 
